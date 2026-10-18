@@ -386,3 +386,14 @@ tasks.register('runtimeZipOthers', RuntimeZipTask) {rt ->
 
     configure(rt, jvmArgsLinux)
 }
+
+/**
+ * Local build helper (not committed): OSX aarch64 release only, JDK downloaded by Gradle.
+ * Usage: ./gradlew -PprojectVersion=pdu-lrrp runtimeZipOsxAarch64
+ */
+tasks.register('runtimeZipOsxAarch64', RuntimeZipTask) {rt ->
+    rt.extension.targetPlatform(targetOsxAarch64) {
+        jdkHome = jdkDownload(jdk_download_osx_aarch64)
+    }
+    configure(rt, jvmArgsLinux)
+}
